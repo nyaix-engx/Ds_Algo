@@ -15,7 +15,7 @@ const backtrack=(index, target, array1, array2, result, map )=>{
     backtrack(index+1, target, array1, array2, result, map);
 }
 
-const combinationSum=(candidates, target)=>{
+const combinationSum=(target, candidates)=>{
     const result=[];
     const map=new Map();
     backtrack(0, target, [], candidates.sort((a,b)=>a-b), result, map);
@@ -50,4 +50,4 @@ const combinationSum2=(target, candidates)=>{
 }
 
 
-console.log(combinationSum2(8, [10,1,2,7,6,1,5] ))
+console.log(combinationSum(4, [1,1,2,2,1] ))
