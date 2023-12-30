@@ -1,28 +1,43 @@
-// # Check whether a string is palindrome using 2 pointers.
 
-const Palindrome=(arr, i, j)=>{
-    if(i>=j) return "The string is a palindrome";
 
-    if(arr[i]===arr[j]) {
-        return Palindrome(arr,i+1,j-1)
-    } else {
-        return "The string is not a palindrome"
+const partition = (s)=> {
+
+    const checkPalindrome=(value)=>{
+        let i=0;
+        let j=value.length-1
+        while(i<j){
+            if(value[i]!==value[j]){
+                return false
+            }
+            i++;
+            j--;
+        }
+        return true;
     }
-}
 
-// console.log(Palindrome("MADDAM",0,5));
+    const backtrack=(res,temp,index)=>{
+        if(index===s.length){
+            res.push([...temp])
+            return;
+        }
 
-// # Check whether a string is palindrome using 1 pointers.
-
-const Palindrome_2=(arr, i)=>{
-    let n=arr.length-1
-    if(i>=n/2) return "The string is a palindrome";
-
-    if(arr[i]===arr[n-i]) {
-        return Palindrome_2(arr,i+1)
-    } else {
-        return "The string is not a palindrome"
+        for(let i=index;i<s.length;i++){
+            const item=s.slice(index,i+1);
+             if(checkPalindrome(item)){
+                temp.push(s.slice(index,i+1))
+                backtrack(res,temp,i+1)
+                temp.pop();
+            }
+        }
     }
-}
 
-console.log(Palindrome_2("MADFAM",0));
+    
+    let result=[]
+    backtrack(result,[],0);
+    return result
+
+};
+
+
+console.log(partition('ATTA'))
+

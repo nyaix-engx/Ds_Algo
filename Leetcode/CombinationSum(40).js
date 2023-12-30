@@ -37,7 +37,7 @@ const backtrack2=(index, arr, target, candidates, ds)=>{
         if(candidates[i]>target) break;
         if(i>index && candidates[i]===candidates[i-1]) continue;
         arr.push(candidates[i]);
-        backtrack2(i+1, arr, target-candidates[i], candidates, ds);
+        backtrack2(index+1, arr, target-candidates[i], candidates, ds);
         arr.pop();
     }
 }
